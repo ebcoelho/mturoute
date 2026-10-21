@@ -9,7 +9,7 @@ jobs:
   build:
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Build universal binary
         working-directory: macos
@@ -23,7 +23,7 @@ jobs:
           ./mturoute -i 0 -w 1000 -m 2000 127.0.0.1
 
       - name: Upload binary
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: mturoute-macos-universal
           path: macos/mturoute
