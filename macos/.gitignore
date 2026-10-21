@@ -1,0 +1,4 @@
+/mturoute
+*.dSYM/
+*.o
+.DS_Store

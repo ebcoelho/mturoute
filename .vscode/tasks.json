@@ -1,0 +1,28 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "build mturoute (macOS)",
+      "type": "shell",
+      "command": "make",
+      "options": { "cwd": "${workspaceFolder}/macos" },
+      "group": { "kind": "build", "isDefault": true },
+      "problemMatcher": ["$gcc"]
+    },
+    {
+      "label": "build universal binary",
+      "type": "shell",
+      "command": "make clean universal",
+      "options": { "cwd": "${workspaceFolder}/macos" },
+      "problemMatcher": ["$gcc"]
+    },
+    {
+      "label": "run mturoute 1.1.1.1",
+      "type": "shell",
+      "command": "./mturoute 1.1.1.1",
+      "options": { "cwd": "${workspaceFolder}/macos" },
+      "dependsOn": "build mturoute (macOS)",
+      "problemMatcher": []
+    }
+  ]
+}

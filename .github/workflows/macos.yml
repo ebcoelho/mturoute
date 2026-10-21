@@ -1,0 +1,29 @@
+name: macOS build
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build universal binary
+        working-directory: macos
+        run: make universal CFLAGS="-O2 -Wall -Wextra -Werror -std=c99"
+
+      - name: Smoke test
+        working-directory: macos
+        run: |
+          file mturoute
+          ./mturoute -v
+          ./mturoute -i 0 -w 1000 -m 2000 127.0.0.1
+
+      - name: Upload binary
+        uses: actions/upload-artifact@v4
+        with:
+          name: mturoute-macos-universal
+          path: macos/mturoute
